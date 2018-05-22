@@ -92,6 +92,32 @@ class FirstForm extends FormBase {
      $array[] = str_getcsv($line);
    }
    dpm($array); 
+
+   foreach($array as $userdata) {
+     if($userdata[0] != 'ID') {
+       $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+       $user = \Drupal\user\Entity\User::create();
+       // Mandatory
+       $user->setPassword('passwordnsf');
+       $user->enforceIsNew();
+       $user->setEmail($userdata[2]);
+       $user->setUsername($userdata[4]);
+       //$user->addRole(1);
+       $user->activate();
+
+       // Optional.
+       /*$user->set('init', 'email');
+       $user->set('langcode', $language);
+       $user->set('preferred_langcode', $language);
+       $user->set('preferred_admin_langcode', $language);
+       $user->set('setting_name', 'setting_value');
+       $user->addRole('rid');
+       $user->activate();*/
+
+       $result = $user->save();
+     }
+
+   }
           
   }
 }
