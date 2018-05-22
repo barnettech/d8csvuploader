@@ -86,8 +86,12 @@ class FirstForm extends FormBase {
       $file->save();
     }
    $data = file_get_contents($file->getFileUri());
-      drupal_set_message($data); 
-    
-         
+   $lines = explode(PHP_EOL, $data);
+   $array = array();
+   foreach ($lines as $line) {
+     $array[] = str_getcsv($line);
+   }
+   dpm($array); 
+          
   }
 }
