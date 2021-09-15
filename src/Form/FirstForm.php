@@ -35,7 +35,7 @@ class FirstForm extends FormBase {
       '#upload_validators' => $validators,
       '#upload_location' => 'public://my_files/',
       '#upload_validators' => array(
-        'file_validate_extensions' => array('csv'),
+        'file_validate_extensions' => array('txt csv'),
         'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
        ),
     );
